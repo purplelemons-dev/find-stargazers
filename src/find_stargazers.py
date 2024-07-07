@@ -1,6 +1,7 @@
 import requests
 import dotenv
 from os import environ
+from os.path import exists
 
 
 def get_repos_and_stargazers(username, token):
@@ -44,7 +45,8 @@ def get_repos_and_stargazers(username, token):
 
 
 username = input("Enter the GitHub username: ")
-dotenv.load_dotenv()
+if exists(".env"):
+    dotenv.load_dotenv()
 token = environ.get("GITHUB_TOKEN")
 
 get_repos_and_stargazers(username, token)
